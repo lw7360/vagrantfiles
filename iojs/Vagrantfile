@@ -18,7 +18,10 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, :inline => "touch .hushlogin"
     config.vm.provision :shell, :inline => "hostnamectl set-hostname #{hostname} && locale-gen #{locale}"
     config.vm.provision :shell, :inline => "apt-get update --fix-missing"
-    config.vm.provision :shell, :inline => "apt-get install -q -y g++ make git curl vim"
+    config.vm.provision :shell, :inline => "apt-get install -q -y g++ make git curl vim-gnome build-essential cmake python-dev"
+    config.vm.provision :shell, :inline => "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    config.vm.provision :shell, :inline => "wget https://raw.githubusercontent.com/lw7360/vimrc/master/.vimrc"
 
     # Lang
     config.vm.provision :shell, :inline => "echo 'fetching #{path}' && wget -q https://iojs.org/dist/v#{version}/#{path}.tar.xz"
