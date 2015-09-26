@@ -3,13 +3,14 @@
 
 Vagrant.configure("2") do |config|
 
-    version = "3.3.1"
-    hostname = "iojs.box"
+    hostname = "example.box"
     locale = "en_GB.UTF.8"
-    path = "iojs-v#{version}-linux-x64"
 
     # Box
     config.vm.box = "ubuntu/trusty64"
+
+    # Forward port
+    config.vm.network "forwarded_port", guest: 9991, host: 9991, host_ip: "127.0.0.1"
 
     # Shared folders
     config.vm.synced_folder ".", "/srv"
